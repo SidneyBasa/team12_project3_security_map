@@ -23,7 +23,7 @@ Front end repository for security map project
 ## License
 MIT License
 
-## Deployment
+## Contributors
 John Hornick (Project Manager)
 Eric Anderson
 Sidney Basa
