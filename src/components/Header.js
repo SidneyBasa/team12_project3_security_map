@@ -1,11 +1,15 @@
 import React from 'react';
-import MapArea from './pages/MapArea.tsx';
-import { AzureMapsProvider } from 'react-azure-maps';
 
-export default function Header() {
+export default function Header({handlePageChange}) {
     return (
-        <AzureMapsProvider>
-            <MapArea />
-        </AzureMapsProvider>
+        <div>
+            <a href="#map" onClick={() => handlePageChange('Map')}>
+                Map
+            </a>
+            <br></br>
+            <a href="#report" onClick={() => handlePageChange('Report')}>
+                Report
+            </a>
+        </div>
     );
 };
