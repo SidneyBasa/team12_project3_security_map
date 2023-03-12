@@ -13,6 +13,7 @@ import {
     IAzureDataSourceChildren
 } from 'react-azure-maps';
 import {AuthenticationType, ControlOptions, CameraOptions, StyleOptions, HtmlMarkerOptions, SymbolLayerOptions, data, source, layer} from 'azure-maps-control';
+import IncidentPin from '../classes/IncidentPin.tsx';
 
 //default coords in seattle
 const longitude = -122.32945;
@@ -32,7 +33,7 @@ const option: IAzureMapOptions = {
     }
 };
 
-const eventToMarker: Array<IAzureMapHtmlMarkerEvent> = [{ eventName: 'click', callback: onclick }];
+const eventToMarker: Array<IAzureMapHtmlMarkerEvent> = [{ eventName: 'click', callback: markerCallback }];
 function azureHtmlMapMarkerOptions(coordinates: data.Position, text: string, title: string): HtmlMarkerOptions {
     return {
         position: coordinates,
@@ -40,16 +41,26 @@ function azureHtmlMapMarkerOptions(coordinates: data.Position, text: string, tit
         title,
     };
 }
-function renderHTMLPoint(coordinates: data.Position): any {
+function markerCallback(event) {
+    const thisDisp = event.target.element.querySelector('.info-display');
+    const selecting = !thisDisp.classList.contains('selected');
+    document.querySelectorAll('.info-display').forEach(disp => {
+        disp.classList.remove('selected');
+    });
+    if(selecting) {
+        thisDisp.classList.add('selected');
+    }
+}
+function renderHTMLPoint(pin: IncidentPin): any {
     const rendId = Math.random();
     return (
       <AzureMapHtmlMarker
         key={rendId}
         markerContent={
             //HTML MARKER DISPLAYED ON MAP
-            <div className="pulseIcon">hey</div>
+            pin.getPin()
         }
-        options={{ ...azureHtmlMapMarkerOptions(coordinates, 'Some Text', 'MyTitle') } as any}
+        options={{ ...azureHtmlMapMarkerOptions(pin.getCoords(), 'Some Text', 'MyTitle') } as any}
         events={eventToMarker}
       />
     );
@@ -62,12 +73,15 @@ function renderHTMLPoint(coordinates: data.Position): any {
     },
   };
 
-  export default function Map({mode,setCurrentPoint}) {
+  export default function Map({mode,htmlMarkers,setCurrentPoint}) {
     const { mapRef, isMapReady } = useContext<IAzureMapsContextProps>(AzureMapsContext);
-    const [htmlMarkers, setHtmlMarkers] = useState([] as data.Position[]);
     const [markersLayer] = useState<IAzureMapLayerType>('SymbolLayer');
     const [layerOptions, setLayerOptions] = useState<SymbolLayerOptions>(memoizedOptions);
+    const [myLayer, setMyLayer] = useState<JSX.Element>();
 
+    if(!htmlMarkers) {
+        htmlMarkers = [] as IncidentPin[];
+    }
     const memoizedHtmlMarkerRender: IAzureDataSourceChildren = useMemo(
       (): any => htmlMarkers.map((marker) => renderHTMLPoint(marker)),
       [htmlMarkers]
@@ -137,21 +151,21 @@ function renderHTMLPoint(coordinates: data.Position): any {
                     }
                 });
             }
-    //   setMyLayer(
-    //     <AzureMapDataSourceProvider id={'incident-pins-data'}>
-    //       <AzureMapLayerProvider
-    //           id={'incident-pins-layer'}
-    //           options={layerOptions}
-    //           lifecycleEvents={{
-    //               layeradded: () => {
-    //                   console.log('LAYER ADDED TO MAP');
-    //               }
-    //           }}
-    //           type={markersLayer}
-    //       />
-    //       {memoizedHtmlMarkerRender}
-    //     </AzureMapDataSourceProvider>
-    //   );
+            setMyLayer(
+                <AzureMapDataSourceProvider id={'incident-pins-data'}>
+                <AzureMapLayerProvider
+                    id={'incident-pins-layer'}
+                    options={layerOptions}
+                    lifecycleEvents={{
+                        layeradded: () => {
+                            console.log('LAYER ADDED TO MAP');
+                        }
+                    }}
+                    type={markersLayer}
+                />
+                {memoizedHtmlMarkerRender}
+                </AzureMapDataSourceProvider>
+            );
         }
     });
 
@@ -159,7 +173,7 @@ function renderHTMLPoint(coordinates: data.Position): any {
         <div>
             <div style={{ height: '500px', width: '700px' }}>
                 <AzureMap options={option} controls={controls} cameraOptions={{} as CameraOptions} styleOptions={{} as StyleOptions}>
-                  
+                    {myLayer}
                 </AzureMap>
             </div>
         </div>

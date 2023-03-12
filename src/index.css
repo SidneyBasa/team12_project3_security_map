@@ -12,6 +12,37 @@ code {
     monospace;
 }
 
+.incident-pin img {
+  width:30px;
+}
+.incident-pin .info-display {
+  display:none;
+  background-color:white;
+  border-radius:20px;
+  border:2px solid black;
+}
+.incident-pin .selected {
+  display:inherit;
+}
+.incident-pin:hover .info-display {
+  display:inherit;
+}
+.incident-pin .selected + img, .incident-pin:hover img {
+  display:none;
+}
+.incident-pin .info-display p {
+  margin:0 10px;
+}
+.incident-pin .info-display header {
+  margin:0 0 5px 0;
+  padding:1px 10px;
+  border-top-left-radius:15px;
+  border-top-right-radius:15px;
+  background-color:black;
+  color:white;
+}
+
+
 @media only screen and (max-width: 768px) {
-  
+
 }
