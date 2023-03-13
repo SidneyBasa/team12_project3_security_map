@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Header({handlePageChange}) {
     return (
-        <div>
+        <div className='headerDiv'>
             <a href="#map" onClick={() => handlePageChange('Map')}>
                 Map
             </a>

@@ -23,7 +23,7 @@ let htmlMarkersGlobal = [
     const [htmlMarkers, setHtmlMarkers] = useState(htmlMarkersGlobal);
 
     return (
-        <div>
+        <div className='mapDiv'>
             <MapModule mode={'map'} htmlMarkers={htmlMarkers} />
         </div>
     );

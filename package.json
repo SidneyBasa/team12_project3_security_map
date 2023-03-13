@@ -43,5 +43,14 @@
     "whitelist": [
       "AZURE_KEY"
     ]
+  },
+  "description": "Front end repository for the security map project ![satelliteseattle](https://user-images.githubusercontent.com/67940686/222820378-053573da-e487-4ed0-b23a-a0ef7cebb420.jpg)",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.15.1",
+    "typescript": "^4.9.5"
   }
 }
