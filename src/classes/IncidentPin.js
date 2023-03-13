@@ -1,15 +1,14 @@
 import React from 'react';
-import {data} from 'azure-maps-control';
 
 export default class IncidentPin {
-    description: string;
-    notes: string;
-    personofinterest: string;
-    point: data.Position;
-    incidentTime: string;
-    reportTime: string;
-    reportingUser: string;
-    reportingUserURL: string;
+    description;
+    notes;
+    personofinterest;
+    point;
+    incidentTime;
+    reportTime;
+    reportingUser;
+    reportingUserURL;
 
     constructor(point, description, notes, personofinterest, incidentTime, reportTime, reportingUser, reportingUserURL) {
         this.point = point;
@@ -23,7 +22,7 @@ export default class IncidentPin {
         this.reportTime = formatDate(reportTime);
 
         function formatDate(input) {
-            let spl: string[] = [];
+            let spl = [];
             if(input.includes('T')) {
                 spl = input.split('T');
             } else {
@@ -76,7 +75,7 @@ export default class IncidentPin {
         }
     }
 
-    getPin(): JSX.Element {
+    getPin() {
         function conditionalDisplay(prompt, item, row) {
             if(item && row) {
                 return <div><hr></hr><p>{prompt} {item}</p></div>;
@@ -103,7 +102,7 @@ export default class IncidentPin {
         );
     }
 
-    getCoords(): data.Position {
+    getCoords() {
         return this.point;
     }
 }

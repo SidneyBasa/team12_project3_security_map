@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Map from './pages/Map.tsx';
-import Report from './pages/Report.tsx';
+import { Login, Map, Signup, Report } from './pages';
 import { AzureMapsProvider } from 'react-azure-maps';
 
 export default function Body({currentPage}) {
@@ -19,8 +18,14 @@ export default function Body({currentPage}) {
             </AzureMapsProvider>
           );
         }
+        if( currentPage === 'Login') {
+            return <Login />;
+        }
+        if (currentPage === 'Signup') {
+            return <Signup />;
+        }
         //TODO pick a default page to render
-        return <Report />;
+        return <Login />;
     };
 
     return (

@@ -5,7 +5,7 @@ import Body from './components/Body';
 function App() {
     
     //TODO set default page
-    const [currentPage, setCurrentPage] = useState('Report');
+    const [currentPage, setCurrentPage] = useState();
     const handlePageChange = (page) => setCurrentPage(page);
 
   return (

@@ -13,7 +13,7 @@ import {
     IAzureDataSourceChildren
 } from 'react-azure-maps';
 import {AuthenticationType, ControlOptions, CameraOptions, StyleOptions, HtmlMarkerOptions, SymbolLayerOptions, data, source, layer} from 'azure-maps-control';
-import IncidentPin from '../classes/IncidentPin.tsx';
+import IncidentPin from '../classes/IncidentPin.js';
 
 //default coords in seattle
 const longitude = -122.32945;

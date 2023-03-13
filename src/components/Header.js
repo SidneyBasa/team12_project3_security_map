@@ -10,6 +10,14 @@ export default function Header({handlePageChange}) {
             <a href="#report" onClick={() => handlePageChange('Report')}>
                 Report
             </a>
+            <br></br>
+            <a href="#login" onClick={() => handlePageChange('Login')}>
+                Log In
+            </a>
+            <br></br>
+            <a href="#signup" onClick={() => handlePageChange('Signup')}>
+                Sign Up
+            </a>
         </div>
     );
 };
