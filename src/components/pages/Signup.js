@@ -1,10 +1,8 @@
 import React from 'react';
 
 export default function Signup() {
-    const handleSubmit = e=>{
+    const handleSubmit = async e=>{
         e.preventDefault();
-
-        console.log('signup form submitted');
 
         if(e.target[2].value !== e.target[3].value) {
             alert('Passwords do not match.');
@@ -14,18 +12,23 @@ export default function Signup() {
         }
 
         const url = 'http://localhost:3001/users';
-        fetch(url,{
+        const reqBody = JSON.stringify({
+            name:e.target[0].value.trim(),
+            displayName:e.target[1].value.trim(),
+            password:e.target[2].value,
+            isAuth:false,
+            isAdmin:false,
+            organizationId:1
+        });
+        console.log(reqBody);
+        await fetch(url,{
             method:"POST",
-            body:{
-                name:e.target[0].value.trim(),
-                displayName:e.target[1].value.trim(),
-                password:e.target[2].value,
-                isAuth:false,
-                isAdmin:false,
-                organizationId:1
-            }
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body:reqBody
         }).then(res=>res.json()).then(data=>{
-            console.log(data);
+            console.log('Sucessful Sign Up');
         }).catch(err=>{
             console.log(err);
         });

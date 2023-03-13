@@ -38,7 +38,7 @@ function azureHtmlMapMarkerOptions(coordinates: data.Position, text: string, tit
     return {
         position: coordinates,
         text,
-        title,
+        title
     };
 }
 function markerCallback(event) {

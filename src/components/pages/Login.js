@@ -4,17 +4,23 @@ export default function Login() {
     const handleSubmit = async e=>{
         e.preventDefault();
 
-        console.log('login form submitted');
-
-        const url = 'http://localhost:3001/users';
+        const url = 'http://localhost:3001/users/login';
         await fetch(url,{
             method:"post",
-            body:{
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
                 name:e.target[0].value.trim(),
-                password:e.target[2].value
-            }
-        }).then(res=>res.json()).then(data=>{
-            console.log(data.token, data.user);
+                password:e.target[1].value
+            })
+        }).then(res=>{
+            return res.json();
+        }).then(data=>{
+            localStorage.setItem('securitymap_login_token', data.token);
+            localStorage.setItem('securitymap_login_userId', data.user.id);
+        }).catch(err => {
+            console.log(err);
         });
     };
 
