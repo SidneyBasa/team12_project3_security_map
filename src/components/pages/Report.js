@@ -57,17 +57,17 @@ export default function Report() {
         <div>
             <h2>Drop a pin where the incident occurred:</h2>
             <MapModule mode={'report'} setCurrentPoint={setCurrentPoint} />
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="incident-time">Time of Incident</label>
+            <form className="reportFormCSS" onSubmit={handleSubmit}>
+                <label id="incident-time-label" htmlFor="incident-time">Time of Incident</label>
                 <input type="datetime-local" id="incident-time" name="incident-time"></input>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                 <br></br>
-                <label htmlFor="description">Summary</label>
+                <label id="description-label" htmlFor="description">Summary</label>
                 <input id="description" name="description"></input>
                 <br></br>
-                <label htmlFor="notes">Description/Notes</label>
+                <label id="notes-label" htmlFor="notes">Description/Notes</label>
                 <textarea id="notes" name="notes"></textarea>
                 <br></br>
-                <label htmlFor="personofinterest">Person of Interest</label>
+                <label id="personofinterest-label"htmlFor="personofinterest">Person of Interest</label>
                 <textarea id="personofinterest" name="personofinterest"></textarea>
                 <button>Submit</button>
             </form>

@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(29, 58, 223) 100%);
+
 }
 
 code {
@@ -42,6 +45,73 @@ code {
   color:white;
 }
 
+.mapDiv {
+  /* padding: 10px; */
+  margin: 10px;
+}
+
+.mapbox1-canvas .atlas-map{
+  /* margin: 10px; */
+  padding: 10px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  margin: 10px;
+  align-items: center;
+}
+
+a {
+  display: flex;
+  color: white;
+  text-decoration: none;
+  margin: 20px;
+  font-size: 20px;
+}
+
+a:hover {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 10px 15px rgba(209, 209, 171, 0.4);
+  
+}
+
+.headerDiv {
+  display: flex;;
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+  color: white;
+}
+
+.reportFormCSS {
+ color: white; 
+ font-size: 20px;
+}
+
+#incident-time, 
+#incident-time-label, 
+#description, 
+#description-label,
+#notes,
+#notes-label,
+#personofinterest-label,
+#personofinterest {
+  padding: 10px;
+  margin: 5px;
+}
+
+#incident-time, 
+#description, 
+#notes,
+#personofinterest {
+  justify-content: center;
+}
 
 @media only screen and (max-width: 768px) {
 
